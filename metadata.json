@@ -1,0 +1,6 @@
+{
+  "name": "Slate",
+  "description": "An advanced, fully frontend Markdown notepad with an immersive dark aesthetic, local storage, and file attachments.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}

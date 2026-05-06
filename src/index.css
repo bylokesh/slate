@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Lora", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-zinc-50 text-zinc-900 font-sans antialiased overflow-hidden selection:bg-zinc-200 selection:text-zinc-900;
+  }
+  .dark body {
+    @apply bg-[#030303] text-zinc-300 selection:bg-zinc-800 selection:text-zinc-50;
+  }
+}
+
+/* Minimalist Grids */
+.bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+}
+
+.dark .bg-grid-pattern {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-zinc-300 rounded-full border border-white;
+}
+.dark ::-webkit-scrollbar-thumb {
+  @apply bg-zinc-800 rounded-full border border-[#030303];
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-400 dark:bg-zinc-600;
+}
+
+/* Prose (Markdown) */
+.prose {
+  @apply text-zinc-800 dark:text-zinc-300 leading-loose tracking-wide;
+}
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  @apply text-zinc-950 dark:text-white font-sans tracking-tight mt-10 mb-5;
+}
+.prose h1 { @apply text-4xl font-semibold; }
+.prose h2 { @apply text-3xl font-medium border-b border-zinc-200 dark:border-white/10 pb-3; }
+.prose h3 { @apply text-2xl font-medium text-zinc-800 dark:text-zinc-200; }
+.prose p { @apply mb-6 last:mb-0 text-[15px]; }
+.prose ul { @apply list-disc list-outside ml-6 mb-6 space-y-2 text-[15px]; }
+.prose ol { @apply list-decimal list-outside ml-6 mb-6 space-y-2 text-[15px]; }
+.prose a { @apply text-blue-600 dark:text-zinc-300 underline decoration-blue-500/50 dark:decoration-zinc-500/50 underline-offset-4 hover:decoration-blue-600 dark:hover:text-white focus:outline-none transition-colors; }
+.prose strong { @apply text-zinc-950 dark:text-white font-semibold; }
+.prose blockquote { @apply border-l-2 border-zinc-400 dark:border-zinc-500 pl-6 italic text-zinc-600 dark:text-zinc-400 my-8 py-2 bg-zinc-100/50 dark:bg-zinc-900/50 rounded-r-lg; }
+.prose code { @apply font-mono bg-zinc-100 dark:bg-white/[0.05] border border-zinc-200 dark:border-white/[0.05] text-zinc-800 dark:text-zinc-200 px-1.5 py-0.5 rounded-md text-[0.85em]; }
+.prose pre { @apply bg-white dark:bg-[#0a0a0a] p-5 rounded-lg overflow-x-auto border border-zinc-200 dark:border-white/10 my-8 shadow-sm dark:shadow-md; }
+.prose pre code { @apply bg-transparent border-none p-0 flex text-[0.85em] text-zinc-800 dark:text-zinc-300 shadow-none; }
+.prose img { @apply rounded-lg max-w-full my-8 border border-zinc-200 dark:border-white/10 shadow-sm dark:shadow-2xl bg-white dark:bg-[#0a0a0a]; }
+.prose hr { @apply border-zinc-200 dark:border-white/10 my-12; }
+.prose table { @apply w-full mb-8 border-collapse text-[15px]; }
+.prose th { @apply text-left border-b border-zinc-300 dark:border-white/20 pb-3 text-zinc-950 dark:text-white font-medium; }
+.prose td { @apply border-b border-zinc-200 dark:border-white/10 py-3 text-zinc-600 dark:text-zinc-400; }
+.prose input[type="checkbox"] { @apply mr-3 w-4 h-4 accent-zinc-900 dark:accent-zinc-500 rounded bg-white dark:bg-white/[0.05] border-zinc-300 dark:border-white/20; }
+
+/* Editor specific placeholder overrides */
+.content-editor.is-empty:before {
+  content: attr(data-placeholder);
+  pointer-events: none;
+  color: #a1a1aa; /* zinc-400 */
+  position: absolute;
+}
+.dark .content-editor.is-empty:before {
+  color: #52525b; /* zinc-600 */
+}
+
+@media print {
+  @page {
+    margin: 20mm;
+  }
+  body, .dark body {
+    background: white !important;
+    color: black !important;
+    overflow: visible !important;
+    height: auto !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  /* Hide UI elements explicitly */
+  .print\:hidden {
+    display: none !important;
+  }
+  .content-editor.is-empty:before {
+    display: none !important;
+  }
+  
+  #root > div, .flex.h-\[100dvh\] {
+    display: block !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: transparent !important;
+  }
+  
+  .flex-1.bg-white {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Editor width constraints removed for print */
+  .max-w-\[700px\], .max-w-7xl {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+  
+  /* Typography enhancements for print */
+  #note-title {
+    font-size: 32pt !important;
+    margin-bottom: 24px !important;
+    border: none !important;
+    padding: 0 !important;
+    line-height: 1.1 !important;
+  }
+  
+  .content-editor {
+    font-size: 11pt !important;
+    line-height: 1.6 !important;
+  }
+  
+  .content-editor[data-placeholder="Heading 1"] { font-size: 20pt !important; margin-top: 16px !important; margin-bottom: 8px !important; }
+  .content-editor[data-placeholder="Heading 2"] { font-size: 16pt !important; margin-top: 12px !important; margin-bottom: 6px !important; }
+  .content-editor[data-placeholder="Heading 3"] { font-size: 14pt !important; margin-top: 8px !important; margin-bottom: 4px !important; }
+
+  .prose {
+    color: black !important;
+    max-width: 100% !important;
+  }
+  .prose h1, .prose h2, .prose h3, .prose h4, .prose strong, .prose th {
+    color: black !important;
+    -webkit-text-fill-color: black !important;
+  }
+  .prose code, .prose pre {
+    background: #f4f4f5 !important;
+    color: black !important;
+    border: 1px solid #d4d4d8 !important;
+    white-space: pre-wrap !important;
+  }
+  .prose img {
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: 1px solid #e4e4e7 !important;
+  }
+  .prose a {
+    color: #2563eb !important;
+    text-decoration: none !important;
+  }
+}
+
