@@ -20,7 +20,7 @@ export function LandingPage({ onLaunch }: LandingPageProps) {
           </div>
         </div>
         <div className="flex items-center gap-4 text-sm font-medium">
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
+          <a href="https://github.com/bylokesh/slate" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-zinc-500 hover:text-black dark:hover:text-white transition-colors">
              GitHub
           </a>
         </div>
