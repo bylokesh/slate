@@ -111,7 +111,7 @@ export function Sidebar({ notes, activeNoteId, onSelect, onCreate, onDelete, onE
       </div>
       
       <div className="p-4 border-t border-zinc-200 dark:border-white/10 mt-auto bg-zinc-100 dark:bg-transparent flex flex-wrap items-center justify-between gap-2">
-        <a href="https://github.com/yourusername/slate" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[13px] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 font-medium">
+        <a href="https://github.com/bylokesh/slate" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-[13px] text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white transition-colors p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-white/5 font-medium">
           <Github size={14} />
           <span>Open Source</span>
         </a>
